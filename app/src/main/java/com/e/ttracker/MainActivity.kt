@@ -117,7 +117,7 @@ fun BottomNavigationBar(navController: NavController) {
     ) {
         BottomNavigation(
             backgroundColor = Color.White,
-            contentColor = Color(0xFF1E1F4B)
+            contentColor = Color(0xFF1E1F4B), elevation = 20.dp
         ) {
             items.forEach { item ->
                 BottomNavigationItem(

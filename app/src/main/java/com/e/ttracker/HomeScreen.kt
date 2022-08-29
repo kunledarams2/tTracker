@@ -76,7 +76,7 @@ fun HeaderView() {
                 style = TextStyle(
                     fontSize = 18.sp, fontFamily = FontFamily(
                         Font(R.font.poppins_bold)
-                    ), textAlign = TextAlign.Center
+                    ), textAlign = TextAlign.Center,color = Color(0XFF2D2F48)
 
                 )
 
@@ -386,20 +386,15 @@ fun TimeDateView() {
                         .padding(5.dp)
                         .width(100.dp)
                 )
-                /* Text(
-                     modifier = Modifier
-                         .padding(10.dp)
-                         .width(100.dp),
-                     text = "12:00 AM",
-                     style = TextStyle(
-                         fontSize = 14.sp, fontFamily = FontFamily(
-                             Font(R.font.poppins_light)
-                         ), textAlign = TextAlign.Center, color = Color(0XFF2D2F48)
 
-                     )
-
-                 )*/
             }
+
+            Image(
+                painter = painterResource(id = R.drawable.ic_outline_remove_24),
+                contentDescription = "",
+                modifier = Modifier.padding(top=20.dp)
+
+                )
 //            Divider()
             /*  Box(
                   modifier = Modifier
@@ -448,8 +443,27 @@ fun TimeDateView() {
             }
 
         }
+        Spacer(modifier = Modifier.height(10.dp))
 
+        Row(Modifier.fillMaxWidth()) {
 
+            Text(
+                text = "Task Created",
+                style = TextStyle(
+                    fontSize = 16.sp, fontFamily = FontFamily(
+                        Font(R.font.poppins_medium)
+                    ),  color = Color(0XFF2D2F48)
+
+                ),
+                modifier = Modifier.weight(1f)
+
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_baseline_import_export_24),
+                contentDescription = "",
+
+            )
+        }
     }
 }
 
@@ -513,6 +527,7 @@ fun CreatedTaskHolder(taskModel: TaskModel) {
 
 @Composable
 fun GetProgressTaskData() {
+
     val taskList = remember { DataProvider.progressTaskSlot }
     Spacer(modifier = Modifier.padding(top = 20.dp))
     LazyRow(contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)) {
@@ -660,7 +675,7 @@ fun DropDownView(items: List<String>, modifier: Modifier) {
                 }) {
                     Text(
                         text = s, style = TextStyle(
-                            fontSize = 14.sp, fontFamily = FontFamily(
+                            fontSize = 10.sp, fontFamily = FontFamily(
                                 Font(R.font.poppins_light)
                             ), textAlign = TextAlign.Center, color = Color(0XFF2D2F48)
 
