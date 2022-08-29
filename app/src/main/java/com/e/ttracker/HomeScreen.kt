@@ -29,7 +29,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-//import com.google.accompanist.flowlayout.FlowColumn
 
 @Preview(showBackground = true)
 
@@ -84,20 +83,21 @@ fun HeaderView() {
             )
         }
 
-        SampleScreen()
+        Layout()
 
 
     }
 }
+
 @Composable
-fun SampleScreen(){
+fun Layout() {
     val taskList = remember { DataProvider.taskDescription }
 
-    Box{
+    Box {
 
-        Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)){
-            LazyColumn{
-                item{
+        Column(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+            LazyColumn {
+                item {
                     TitleView()
                 }
                 items(
@@ -107,13 +107,9 @@ fun SampleScreen(){
                     }
                 )
 
-
-
-                item{
+                item {
                     GetProgressTaskData()
                     Spacer(modifier = Modifier.padding(top = 60.dp))
-//                    ProgressTaskBar()
-                    //other views
                 }
             }
         }
@@ -125,16 +121,11 @@ fun SampleScreen(){
 fun TitleView() {
     var titleDpFieldValue by remember { mutableStateOf("I would like to take this opportunity to thank you for providing me with this golden opportunity. ") }
     var titleFieldValue by remember { mutableStateOf("") }
-    val scrollState = rememberScrollState()
-
-
 
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-
-//            .verticalScroll(rememberScrollState())
 
     ) {
 
@@ -147,8 +138,8 @@ fun TitleView() {
             TextField(
 
                 value = titleFieldValue, onValueChange = { titleFieldValue = it },
-                /*  modifier = Modifier
-                      .padding(15.dp),*/
+                modifier = Modifier
+                    .weight(1f),
 
                 textStyle = TextStyle(
                     color = Color.Black,
@@ -169,26 +160,26 @@ fun TitleView() {
                     imeAction = ImeAction.Next
                 ),
                 keyboardActions = KeyboardActions { KeyboardActions.Default.onNext },
-                /* leadingIcon = {
-                     Icon(
-                         Icons.Filled.Person,
-                         "contentDescription",
-                         tint = Color.White
-                     )
-                 }*/
 
-            )
-            Image(
-                painter = painterResource(id = R.drawable.ic_vector__10_), contentDescription = "",
-                Modifier.padding(top = 20.dp)
-            )
-            Spacer(modifier = Modifier.width(20.dp))
-            Image(
-                painter = painterResource(id = R.drawable.ic_group__2_), contentDescription = "",
-                Modifier.padding(top = 20.dp)
-            )
+
+                )
+            Row() {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_vector__10_),
+                    contentDescription = "",
+                    Modifier.padding(top = 20.dp)
+                )
+                Spacer(modifier = Modifier.width(20.dp))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_group__2_),
+                    contentDescription = "",
+                    Modifier.padding(top = 20.dp)
+                )
+            }
+
 
         }
+        Spacer(modifier = Modifier.padding(top = 10.dp))
         Card(
             shape = RoundedCornerShape(corner = CornerSize(10.dp)),
             backgroundColor = Color(0XFFB8FDBB), modifier = Modifier
@@ -245,9 +236,7 @@ fun TitleView() {
                     painterResource(id = R.drawable.ic_group__3_),
                     contentDescription = "",
                     Modifier.padding(10.dp)
-                    /* .clip(CircleShape)
-                     .height(30.dp)
-                     .width(30.dp)*/
+
                 )
 
                 Image(
@@ -261,20 +250,14 @@ fun TitleView() {
                     painterResource(id = R.drawable.ic_eva_color_palette_outline),
                     contentDescription = "",
                     Modifier.padding(10.dp)
-                    /*Modifier
-                        .clip(CircleShape)
-                        .height(30.dp)
-                        .width(30.dp)*/
+
                 )
 
                 Image(
                     painterResource(id = R.drawable.ic_vector__12_),
                     contentDescription = "",
                     Modifier.padding(10.dp)
-                    /* Modifier
-                         .clip(CircleShape)
-                         .height(30.dp)
-                         .width(30.dp)*/
+
                 )
                 Spacer(modifier = Modifier.width(110.dp))
 
@@ -282,30 +265,20 @@ fun TitleView() {
                     painterResource(id = R.drawable.ic_vector__13_),
                     contentDescription = "",
                     Modifier.padding(10.dp)
-                    /* Modifier
-                         .clip(CircleShape)
-                         .height(30.dp)
-                         .width(30.dp)*/
+
                 )
 
                 Image(
                     painterResource(id = R.drawable.ic_vector__15_),
                     contentDescription = "",
                     Modifier.padding(10.dp)
-                    /* Modifier
-                         .clip(CircleShape)
-                         .height(30.dp)
-                         .width(30.dp)*/
                 )
 
                 Image(
                     painterResource(id = R.drawable.ic_group_1817),
                     contentDescription = "",
                     Modifier.padding(10.dp)
-                    /* Modifier
-                         .clip(CircleShape)
-                         .height(30.dp)
-                         .width(30.dp)*/
+
                 )
 
             }
@@ -314,7 +287,6 @@ fun TitleView() {
         TimeDateView()
 
     }
-
 
 
 }
@@ -338,7 +310,7 @@ fun TimeDateView() {
                 painterResource(id = R.drawable.ic_group__4_),
                 contentDescription = "",
 
-            )
+                )
 
             Spacer(modifier = Modifier.width(20.dp))
             Text(
@@ -376,18 +348,6 @@ fun TimeDateView() {
         Row(modifier = Modifier.fillMaxWidth()) {
             Spacer(modifier = Modifier.width(38.dp))
             TaskRememberDropDown()
-            /*  Text(
-
-                  text = "Does not repeat",
-                  style = TextStyle(
-                      fontSize = 14.sp, fontFamily = FontFamily(
-                          Font(R.font.poppins_light)
-                      ), textAlign = TextAlign.Center, color = Color(0XFF2D2F48)
-
-                  )
-
-
-              )*/
             Image(
                 painterResource(id = R.drawable.ic_baseline_expand_more_24),
                 contentDescription = "",
@@ -421,9 +381,11 @@ fun TimeDateView() {
 
 
             ) {
-                DropDownView(taskSlotedTimeList, modifier = Modifier
-                    .padding(5.dp)
-                    .width(100.dp))
+                DropDownView(
+                    taskSlotedTimeList, modifier = Modifier
+                        .padding(5.dp)
+                        .width(100.dp)
+                )
                 /* Text(
                      modifier = Modifier
                          .padding(10.dp)
@@ -459,9 +421,11 @@ fun TimeDateView() {
                     .weight(1f)
 
             ) {
-                DropDownView(taskSlotedTimeList, modifier = Modifier
-                    .padding(5.dp)
-                    .width(100.dp))
+                DropDownView(
+                    taskSlotedTimeList, modifier = Modifier
+                        .padding(5.dp)
+                        .width(100.dp)
+                )
             }
 
             Card(
@@ -475,248 +439,26 @@ fun TimeDateView() {
 
                 ) {
 
-                DropDownView(extraSlotTimeList, modifier = Modifier
-                    .padding(5.dp)
-                    .width(100.dp))
-               /* Text(
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .width(100.dp),
-                    text = "1hr:00:00",
-                    style = TextStyle(
-                        fontSize = 14.sp, fontFamily = FontFamily(
-                            Font(R.font.poppins_light)
-                        ), textAlign = TextAlign.Center, color = Color(0XFF2D2F48)
+                DropDownView(
+                    extraSlotTimeList, modifier = Modifier
+                        .padding(5.dp)
+                        .width(100.dp)
+                )
 
-                    )
-
-                )*/
             }
 
         }
 
-//        CreatedTask()
 
     }
 }
 
 @Composable
-fun CreatedTask() {
-
-    Spacer(modifier = Modifier.height(30.dp))
-//    GetTaskData()
-
-   /* Row(
-        Modifier
-            .fillMaxWidth()
-
-
-    ) {
-        Text(
-            modifier = Modifier
-                .weight(1f),
-            text = "Task Created",
-            style = TextStyle(
-                fontSize = 16.sp, fontFamily = FontFamily(
-                    Font(R.font.poppins_light)
-                ), textAlign = TextAlign.Start
-
-            )
-
-        )
-        Image(
-            painter = painterResource(id = R.drawable.ic_baseline_import_export_24),
-            contentDescription = "",
-            alignment = Alignment.CenterEnd,
-            modifier = Modifier.weight(1f)
-
-        )
-    }
-
-    Spacer(modifier = Modifier.height(10.dp))
-    Card(
-        shape = RoundedCornerShape(corner = CornerSize(10.dp)),
-        backgroundColor = Color(0xFFD9D9D9),
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize()
-            .height(50.dp)
-
-    ) {
-
-        Row(
-            Modifier
-                .fillMaxSize()
-                .padding(10.dp)
-        ) {
-
-            Checkbox(checked = false, onCheckedChange = {})
-            Text(
-
-                text = "Contact the CEO of Decagon",
-                style = TextStyle(
-                    fontSize = 12.sp, fontFamily = FontFamily(
-                        Font(R.font.poppins_light)
-                    ), textAlign = TextAlign.Start
-
-                ),
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 10.dp, end = 10.dp)
-
-            )
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly
-
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_vector__10_),
-                    contentDescription = "",
-
-
-                    )
-                Spacer(modifier = Modifier.width(5.dp))
-                Image(
-                    painter = painterResource(id = R.drawable.ic_outline_delete_24),
-                    contentDescription = "",
-
-
-                    )
-            }
-
-        }
-
-
-    }
-    Spacer(modifier = Modifier.height(10.dp))
-
-    Card(
-        shape = RoundedCornerShape(corner = CornerSize(10.dp)),
-        backgroundColor = Color(0xFFCAB8FD),
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize()
-            .height(50.dp)
-
-    ) {
-
-        Row(
-            Modifier
-                .fillMaxSize()
-                .padding(10.dp)
-        ) {
-
-            Checkbox(checked = false, onCheckedChange = {})
-            Text(
-
-                text = "Design the onboarding session of Task Tracker App",
-                style = TextStyle(
-                    fontSize = 12.sp,
-                    fontFamily = FontFamily(
-                        Font(R.font.poppins_light)
-                    ),
-                    textAlign = TextAlign.Start,
-
-                    ), maxLines = 6,
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 10.dp, end = 10.dp)
-
-            )
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly
-
-                *//* modifier =  Modifier
-                     .fillMaxSize()
-                     .weight(1f)*//*
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_vector__10_),
-                    contentDescription = "",
-
-
-                    )
-
-                Image(
-                    painter = painterResource(id = R.drawable.ic_outline_delete_24),
-                    contentDescription = "",
-
-
-                    )
-            }
-
-        }
-
-
-    }
-    Spacer(modifier = Modifier.height(10.dp))
-
-    Card(
-        shape = RoundedCornerShape(corner = CornerSize(10.dp)),
-        backgroundColor = Color(0xFFFDB8B8),
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize()
-            .height(50.dp)
-
-    ) {
-
-        Row(
-            Modifier
-                .fillMaxSize()
-                .padding(10.dp)
-        ) {
-
-            Checkbox(checked = false, onCheckedChange = {})
-            Text(
-
-                text = "Remind the technical team to include the micro-interaction delivered",
-                style = TextStyle(
-                    fontSize = 12.sp, fontFamily = FontFamily(
-                        Font(R.font.poppins_light)
-                    ), textAlign = TextAlign.Start
-
-                ),
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(start = 10.dp, end = 10.dp)
-
-            )
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly
-
-                *//* modifier =  Modifier
-                     .fillMaxSize()
-                     .weight(1f)*//*
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_vector__10_),
-                    contentDescription = "",
-                )
-
-                Image(
-                    painter = painterResource(id = R.drawable.ic_outline_delete_24),
-                    contentDescription = "",
-                )
-            }
-
-        }
-
-
-    }
-    Spacer(modifier = Modifier.height(10.dp))*/
-
-
-
-//    ProgressTaskBar()
-}
-
-@Composable
-fun CreatedTaskHolder(taskModel: TaskModel){
+fun CreatedTaskHolder(taskModel: TaskModel) {
     Spacer(modifier = Modifier.padding(top = 10.dp))
     Card(
         shape = RoundedCornerShape(corner = CornerSize(10.dp)),
-        backgroundColor =taskModel.color,
+        backgroundColor = taskModel.color,
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentSize()
@@ -795,6 +537,7 @@ fun ProgressTaskBar(taskProgressModel: TaskProgressModel) {
                 .width(10.dp)
                 .height(85.dp)
 
+
         ) {
             Box(
                 modifier = Modifier
@@ -808,25 +551,29 @@ fun ProgressTaskBar(taskProgressModel: TaskProgressModel) {
                     .fillMaxWidth()
                     .background(
                         taskProgressModel.color
-                        /* Color(0XFFB8FDBB)*/
 
                     )
             )
 
         }
         Text(
+            modifier = Modifier.padding(end = 10.dp),
             text = taskProgressModel.task, style = TextStyle(
-                fontSize = 12.sp, fontFamily = FontFamily(
+                fontSize = 12.sp,
+                fontFamily = FontFamily(
                     Font(R.font.poppins_light)
-                ), color = Color(0XFF2D2F48), textAlign = TextAlign.Start
+                ),
+                color = Color(0XFF2D2F48),
 
-            )
+                )
         )
+
+
     }
 
 
 
-    Spacer(modifier = Modifier.height(100.dp))
+    Spacer(modifier = Modifier.height(150.dp))
 
 }
 

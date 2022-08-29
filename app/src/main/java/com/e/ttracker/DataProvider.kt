@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 object DataProvider {
 
     val TaskTimeSlot = listOf(
-        " 11:00am",
+        "11:00am",
         "11:15am",
         "11:30am",
         "11:45am",

@@ -17,6 +17,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -65,17 +66,27 @@ class MainActivity : ComponentActivity() {
 }
 
 
-
-
-
-
-
 @Preview(showBackground = true)
 @Composable
 private fun SetComposeView() {
     val navController = rememberNavController()
     Scaffold(
-        bottomBar = { BottomNavigationBar(navController) },
+        bottomBar = {
+
+            BottomNavigationBar(navController)
+        },
+        floatingActionButtonPosition = FabPosition.Center,
+        isFloatingActionButtonDocked = true,
+
+        floatingActionButton = {
+
+            FloatingActionButton(
+                shape = CircleShape,
+                onClick = { }, backgroundColor = Color(0XFF34A853)
+            ) {
+                Icon(imageVector = Icons.Filled.Add, contentDescription ="" , tint = Color.White )
+            }
+        },
 
 
         content = {
@@ -95,9 +106,9 @@ fun BottomNavigationBar(navController: NavController) {
     )
 
     Card(
-        shape = RoundedCornerShape(topEnd = 18f, topStart = 18f),
-        backgroundColor = Color.White,
-        elevation = 5.dp,
+//        shape = RoundedCornerShape(topEnd = 18f, topStart = 18f),
+
+        elevation = 20.dp,
 
         modifier = Modifier
             .height(60.dp)
@@ -116,7 +127,12 @@ fun BottomNavigationBar(navController: NavController) {
                             contentDescription = item.title
                         )
                     },
-                     label = { Text(text = item.title, fontFamily = FontFamily(Font(R.font.poppins_light))) },
+                    label = {
+                        Text(
+                            text = item.title,
+                            fontFamily = FontFamily(Font(R.font.poppins_light))
+                        )
+                    },
                     selectedContentColor = Color(0xFF34A853),
                     unselectedContentColor = Color(0xFF1E1F4B),
                     alwaysShowLabel = true,
@@ -141,28 +157,29 @@ fun BottomNavigationBar(navController: NavController) {
     }
 
 
-
-
 }
 
 @Composable
-fun MNavigation(navController: NavHostController/*, navigateToPlayer: () -> Unit*/){
-    NavHost(navController = navController, startDestination =NavigationItem.Home.route  ){
-        composable(NavigationItem.Home.route){
+fun MNavigation(navController: NavHostController/*, navigateToPlayer: () -> Unit*/) {
+    NavHost(navController = navController, startDestination = NavigationItem.Home.route) {
+        composable(NavigationItem.Home.route) {
 
             HeaderView()
 
         }
-        composable(NavigationItem.Search.route){
+        composable(NavigationItem.Search.route) {
 //            SearchScreen()
         }
 
-        composable(NavigationItem.Notification.route){
+        composable(NavigationItem.Notification.route) {
+//            SearchScreen()
+        }
+
+        composable(NavigationItem.Setting.route) {
 //            SearchScreen()
         }
     }
 }
-
 
 
 @Composable
